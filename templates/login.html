@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/">🔐 SentinelPass</a>
+    <div class="ms-auto">
+      <a class="btn btn-sm btn-light" href="/">Analyzer</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container d-flex justify-content-center align-items-center"
+     style="min-height: 85vh;">
+
+    <div class="card shadow p-4" style="width: 360px;">
+        <h4 class="text-center mb-4">Welcome Back 👋</h4>
+
+        {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST">
+            <div class="mb-3">
+                <input name="email" type="email" class="form-control"
+                       placeholder="Enter your email" required>
+            </div>
+
+            <div class="mb-3">
+                <input name="password" type="password" class="form-control"
+                       placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+                Login
+            </button>
+        </form>
+
+        <hr>
+
+        <!-- Google Button -->
+        <a href="/login/google" class="btn btn-danger w-100">
+            Continue with Google
+        </a>
+
+        <div class="text-center mt-3">
+            <small>No account?</small>
+            <a href="/register">Create one</a>
+        </div>
+
+        
+    </div>
+
+</div>
+</body>
+</html>

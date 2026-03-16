@@ -1,0 +1,15 @@
+<h2>Dashboard</h2>
+<a href="/logout">Logout</a>
+<a href="/analyzer" class="btn btn-primary">Open Password Analyzer</a>
+<table border="1">
+<tr>
+    <th>Password</th>
+    <th>Entropy</th>
+</tr>
+{% for item in history %}
+<tr>
+    <td>{{ item.password }}</td>
+    <td>{{ item.entropy }}</td>
+</tr>
+{% endfor %}
+</table>

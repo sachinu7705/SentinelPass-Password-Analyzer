@@ -1,0 +1,104 @@
+/* ===============================
+   GLOBAL BACKGROUND
+================================= */
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e2e4e8, #243b55);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* ===============================
+   CENTER CONTENT (WITHOUT HTML CHANGE)
+================================= */
+
+/* Target the existing Bootstrap container */
+.container.vh-100,
+.container.d-flex {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: calc(100vh - 56px) !important;
+}
+
+/* ===============================
+   GLASS CARD
+================================= */
+
+.card {
+    background: rgba(210, 196, 196, 0.08) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 18px !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4) !important;
+    padding: 40px 30px !important;
+    color: white !important;
+    width: 380px !important;
+}
+
+/* ===============================
+   INPUTS
+================================= */
+
+.form-control {
+    background: rgba(255,255,255,0.1) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: white !important;
+    height: 45px;
+    border-radius: 8px !important;
+}
+
+.form-control::placeholder {
+    color: rgba(255,255,255,0.6) !important;
+}
+
+.form-control:focus {
+    background: rgba(255,255,255,0.15) !important;
+    color: white !important;
+    box-shadow: none !important;
+}
+
+/* ===============================
+   BUTTONS
+================================= */
+
+.btn-primary,
+.btn-success,
+.btn-warning {
+    background: white !important;
+    color: #243b55 !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    border: none !important;
+    transition: 0.3s ease;
+}
+
+.btn-primary:hover,
+.btn-success:hover,
+.btn-warning:hover {
+    background: #f1f1f1 !important;
+}
+
+/* Google button */
+.btn-danger {
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+}
+
+/* ===============================
+   TEXT COLOR FIX
+================================= */
+
+h4, p, small {
+    color: white !important;
+}
+
+/* ===============================
+   NAVBAR SHADOW
+================================= */
+
+.navbar {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}

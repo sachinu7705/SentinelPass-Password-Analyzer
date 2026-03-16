@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SentinelPass Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <script defer src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</head>
+<body>
+<form method="POST" action="/dashboard" autocomplete="off"></form>
+<!-- Background -->
+<div class="bg-shapes">
+    <div class="shape s1"></div>
+    <div class="shape s2"></div>
+    <div class="shape s3"></div>
+</div>
+
+<!-- Navbar -->
+<div class="navbar">
+    <h2 class="logo">🔐 SentinelPass</h2>
+
+    <div class="account">
+        <div class="account-circle" id="accountBtn">
+            {{ current_user.email[0] | upper }}
+        </div>
+
+        <div class="account-menu" id="accountMenu">
+            <p><strong>{{ current_user.email }}</strong></p>
+            <hr>
+            <a href="/profile">Profile</a>
+            <a href="/export">Export CSV</a>
+            <a href="/logout" class="logout">Logout</a>
+        </div>
+    </div>
+</div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="flash-message {{ category }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+<!-- MAIN FLEX CONTAINER -->
+<div class="container">
+
+    <!-- LEFT: PASSWORD ANALYZER -->
+    <div class="card">
+
+        <h3>Password Analyzer</h3>
+
+        <form method="POST" action="/dashboard">
+
+            <input type="text"
+                   name="service_name"
+                   placeholder="Service Name"
+                   value="{{ service_name }}"
+                   autocomplete="off"
+                   required>
+
+            <select name="category" required>
+                <option value="">Select Category</option>
+
+                <option value="Social" {% if category=="Social" %}selected{% endif %}>Social</option>
+                <option value="Banking" {% if category=="Banking" %}selected{% endif %}>Banking</option>
+                <option value="Work" {% if category=="Work" %}selected{% endif %}>Work</option>
+                <option value="Other" {% if category=="Other" %}selected{% endif %}>Other</option>
+            </select>
+
+            <div class="password-wrapper">
+
+                <input type="password"
+                    name="password"
+                    id="passwordInput"
+                    placeholder="Enter password"
+                    value="{{ password }}"
+                    autocomplete="new-password"
+                    required>
+
+                <span class="toggle-eye" onclick="togglePassword('passwordInput', this)">
+                    👁
+                </span>
+
+            </div>
+                        <!-- Strength Bar -->
+            <div class="strength-wrapper">
+                {% if entropy is not none %}
+                    {% if entropy < 30 %}
+                        <div class="strength-bar">
+                            <div class="strength-fill weak" style="width:25%"></div>
+                        </div>
+                        <small class="weak-text">Very Weak</small>
+
+                    {% elif entropy < 50 %}
+                        <div class="strength-bar">
+                            <div class="strength-fill medium" style="width:50%"></div>
+                        </div>
+                        <small class="medium-text">Weak</small>
+
+                    {% elif entropy < 70 %}
+                        <div class="strength-bar">
+                            <div class="strength-fill good" style="width:70%"></div>
+                        </div>
+                        <small class="good-text">Good</small>
+
+                    {% elif entropy < 90 %}
+                        <div class="strength-bar">
+                            <div class="strength-fill better" style="width:85%"></div>
+                        </div>
+                        <small class="better-text">Strong</small>
+
+                    {% else %}
+                        <div class="strength-bar">
+                            <div class="strength-fill strong" style="width:100%"></div>
+                        </div>
+                        <small class="strong-text">Very Strong</small>
+                    {% endif %}
+                {% else %}
+                    <div class="strength-bar">
+                        <div class="strength-fill" style="width:0%"></div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="btn-group">
+                <button type="submit" name="action" value="analyze">Analyze</button>
+                <button type="submit" name="action" value="save" class="save-btn">Save</button>
+            </div>
+
+        </form>
+
+        {% if entropy is not none %}
+        <div class="result-box">
+            <p><strong>Password Strength:</strong> {{ entropy_label }}</p>
+            <p><strong>Crack Time:</strong> {{ crack_time }}</p>
+            <p><strong>AI Score:</strong> {{ ai_score }}</p>
+        </div>
+        {% endif %}
+
+    </div>
+
+    <!-- RIGHT: HISTORY -->
+    <div class="card history-card">
+
+        <div class="history-header">
+            <h3>Saved History</h3>
+
+            {% if history %}
+            <a href="/delete-all"
+            onclick="return confirm('Delete all saved passwords?')"
+            class="delete-all-btn">
+                Delete All
+            </a>
+            {% endif %}
+        </div>
+
+        {% if history %}
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Category</th>
+                        <th>Password Strength</th>
+                        <th>Show Password</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for item in history %}
+                    <tr>
+                        <td>{{ item.service_name }}</td>
+                        <td>{{ item.category }}</td>
+                        <td>
+                            {% if item.entropy is not none %}
+                                {% if item.entropy < 30 %}
+                                    <span class="badge weak">Very Weak</span>
+                                {% elif item.entropy < 50 %}
+                                    <span class="badge medium">Weak</span>
+                                {% elif item.entropy < 70 %}
+                                    <span class="badge good">Good</span>
+                                {% elif item.entropy < 90 %}
+                                    <span class="badge better">Strong</span>
+                                {% else %}
+                                    <span class="badge strong">Very Strong</span>
+                                {% endif %}
+                            {% else %}
+                                <span class="badge weak">Unknown</span>
+                            {% endif %}
+                        </td>
+                        <td>
+
+                            <div class="table-password-wrapper">
+
+                                <span class="masked-password" id="pass-{{ item.id }}">
+                                    ••••••••
+                                </span>
+
+                                <span class="show-eye"
+                                    onclick="toggleTablePassword('{{ item.id }}', '{{ item.password }}', this)">
+                                    👁
+                                </span>
+
+                            </div>
+
+                        </td>
+                        <td>
+                            <a href="javascript:void(0);" 
+                            class="edit-btn"
+                            onclick="openEditModal(
+                                '{{ item.id }}',
+                                '{{ item.service_name }}',
+                                '{{ item.category }}',
+                                '{{ item.password }}'
+                            )">
+                            Edit
+                            </a>
+                            <a href="/delete/{{ item.id }}"
+                               onclick="return confirm('Delete this entry?')"
+                               class="delete-btn">
+                               Delete
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <p class="empty-msg">No saved passwords yet.</p>
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+<!-- EDIT MODAL -->
+<div id="editModal" class="modal">
+
+    <div class="modal-content">
+        <span class="close" onclick="closeEditModal()">&times;</span>
+
+        <h3>Edit Password</h3>
+
+        <form method="POST" id="editForm">
+
+            <input type="text"
+                   name="service_name"
+                   id="editService"
+                   required>
+
+            <select name="category" id="editCategory" required>
+                <option value="Social">Social</option>
+                <option value="Banking">Banking</option>
+                <option value="Work">Work</option>
+                <option value="Other">Other</option>
+            </select>
+            <div class="password-wrapper">
+
+                <input type="password"
+                    name="password"
+                    id="editPassword"
+                    required>
+
+                <span class="toggle-eye" onclick="togglePassword('editPassword', this)">
+                    👁
+                </span>
+
+            </div>
+            <button type="submit">Update</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
