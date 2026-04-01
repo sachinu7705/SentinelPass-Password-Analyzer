@@ -1,0 +1,368 @@
+/* ===============================
+   GLOBAL BACKGROUND
+================================= */
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
+/* ===============================
+   CENTER CONTENT (WITHOUT HTML CHANGE)
+================================= */
+
+/* Target the existing Bootstrap container */
+.container.vh-100,
+.container.d-flex {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: calc(100vh - 56px) !important;
+}
+
+/* ===============================
+   GLASS CARD
+================================= */
+
+.card {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px !important;
+    border: none !important;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3) !important;
+    padding: 40px 30px !important;
+    width: 380px !important;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* ===============================
+   HEADER
+================================= */
+
+h4 {
+    color: #333 !important;
+    font-weight: 700 !important;
+    font-size: 28px !important;
+    margin-bottom: 30px !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ===============================
+   INPUTS
+================================= */
+
+.form-control {
+    background: #f8f9fa !important;
+    border: 2px solid #e9ecef !important;
+    color: #333 !important;
+    height: 48px;
+    border-radius: 12px !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.form-control::placeholder {
+    color: #adb5bd !important;
+    font-weight: 400;
+}
+
+.form-control:focus {
+    background: white !important;
+    border-color: #667eea !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+    outline: none;
+}
+
+/* ===============================
+   FORGOT PASSWORD LINK - ENHANCED
+================================= */
+
+.forgot-link {
+    color: #667eea !important;
+    text-decoration: none !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+}
+
+.forgot-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: width 0.3s ease;
+}
+
+.forgot-link:hover {
+    color: #764ba2 !important;
+}
+
+.forgot-link:hover::after {
+    width: 100%;
+}
+
+/* ===============================
+   BUTTONS
+================================= */
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white !important;
+    font-weight: 600 !important;
+    border-radius: 12px !important;
+    border: none !important;
+    height: 48px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Google button */
+.btn-danger {
+    background: white !important;
+    border: 2px solid #e9ecef !important;
+    color: #555 !important;
+    font-weight: 600 !important;
+    border-radius: 12px !important;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-danger:hover {
+    background: #f8f9fa !important;
+    border-color: #667eea !important;
+    transform: translateY(-2px);
+}
+
+.btn-danger svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* ===============================
+   REGISTER SECTION - ENHANCED
+================================= */
+
+.register-section {
+    margin-top: 20px !important;
+    padding-top: 5px;
+}
+
+.register-text {
+    color: #6c757d !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    font-family: 'Poppins', sans-serif;
+    margin-right: 5px;
+}
+
+.register-link {
+    color: #667eea !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+.register-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: width 0.3s ease;
+}
+
+.register-link:hover {
+    color: #764ba2 !important;
+}
+
+.register-link:hover::after {
+    width: 100%;
+}
+
+/* ===============================
+   DIVIDER
+================================= */
+
+hr {
+    margin: 25px 0 !important;
+    border: none !important;
+    height: 1px !important;
+    background: linear-gradient(to right, transparent, #e9ecef, transparent) !important;
+}
+
+/* ===============================
+   ALERTS
+================================= */
+
+.alert {
+    border-radius: 12px !important;
+    border: none !important;
+    font-size: 13px !important;
+    font-family: 'Poppins', sans-serif;
+    padding: 12px !important;
+    margin-bottom: 20px !important;
+}
+
+.alert-danger {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%) !important;
+    color: #991b1b !important;
+}
+
+.alert-success {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%) !important;
+    color: #065f46 !important;
+}
+
+/* ===============================
+   NAVBAR
+================================= */
+
+.navbar {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    background: rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: blur(10px);
+}
+
+.navbar-brand {
+    font-weight: 700 !important;
+    font-size: 20px !important;
+    letter-spacing: 0.5px;
+}
+
+.navbar .btn-light {
+    background: rgba(255,255,255,0.2) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease;
+}
+
+.navbar .btn-light:hover {
+    background: rgba(255,255,255,0.3) !important;
+    transform: translateY(-2px);
+}
+
+/* ===============================
+   RESPONSIVE DESIGN
+================================= */
+
+@media (max-width: 576px) {
+    .card {
+        width: 90% !important;
+        margin: 20px !important;
+        padding: 30px 20px !important;
+    }
+    
+    h4 {
+        font-size: 24px !important;
+    }
+    
+    .form-control {
+        height: 44px;
+        font-size: 13px;
+    }
+    
+    .btn-primary, .btn-danger {
+        height: 44px;
+        font-size: 14px;
+    }
+    
+    .forgot-link, .register-text, .register-link {
+        font-size: 12px !important;
+    }
+}
+
+/* ===============================
+   ANIMATIONS
+================================= */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* ===============================
+   DARK MODE SUPPORT
+================================= */
+
+@media (prefers-color-scheme: dark) {
+    .card {
+        background: rgba(30, 30, 40, 0.95) !important;
+    }
+    
+    h4 {
+        background: linear-gradient(135deg, #a78bfa 0%, #c084fc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    .form-control {
+        background: #1f2937 !important;
+        border-color: #374151 !important;
+        color: #f3f4f6 !important;
+    }
+    
+    .form-control:focus {
+        background: #1f2937 !important;
+        border-color: #a78bfa !important;
+    }
+    
+    .register-text {
+        color: #9ca3af !important;
+    }
+    
+    .btn-danger {
+        background: #1f2937 !important;
+        border-color: #374151 !important;
+        color: #f3f4f6 !important;
+    }
+    
+    .btn-danger:hover {
+        background: #374151 !important;
+    }
+}

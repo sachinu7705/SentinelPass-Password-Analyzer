@@ -1,0 +1,203 @@
+/* ===============================
+   BASE
+================================= */
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f7fb;
+    color: #1e293b;
+}
+
+/* ===============================
+   BACKGROUND SHAPES
+================================= */
+
+.bg-shapes {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.15;
+    animation: float 10s infinite ease-in-out;
+}
+
+.s1 {
+    width: 300px;
+    height: 300px;
+    background: #3b82f6;
+    top: -100px;
+    left: -100px;
+}
+
+.s2 {
+    width: 250px;
+    height: 250px;
+    background: #10b981;
+    bottom: -100px;
+    right: -80px;
+    animation-delay: 3s;
+}
+
+.s3 {
+    width: 200px;
+    height: 200px;
+    background: #6366f1;
+    top: 40%;
+    right: 20%;
+    animation-delay: 6s;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-30px); }
+    100% { transform: translateY(0); }
+}
+
+/* ===============================
+   NAVBAR
+================================= */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.logo {
+    margin: 0;
+}
+
+/* ===============================
+   PROFILE LAYOUT
+================================= */
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
+}
+
+.profile-card {
+    background: white;
+    width: 420px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+/* ===============================
+   AVATAR
+================================= */
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    background: #3b82f6;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0 auto 20px auto;
+}
+
+/* ===============================
+   PROFILE INFO
+================================= */
+
+.profile-info {
+    margin-top: 20px;
+    text-align: center;   /* center email */
+}
+
+.profile-info p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+/* ===============================
+   BUTTONS
+================================= */
+
+.profile-actions {
+    margin-top: 30px;
+}
+
+.profile-btn {
+    display: inline-block;
+    padding: 10px 22px;
+    background: #3b82f6;
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.profile-btn:hover {
+    background: #2563eb;
+}
+/* ===============================
+   ACCOUNT (Top Right S)
+================================= */
+
+.account {
+    position: relative;
+}
+
+.account-circle {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.account-circle:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 20px rgba(59,130,246,0.3);
+}
+
+/* Dropdown */
+.account-menu {
+    position: absolute;
+    right: 0;
+    top: 60px;
+    width: 220px;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    display: none;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.account-menu a {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #1e293b;
+}
+
+.account-menu .logout {
+    color: red;
+}

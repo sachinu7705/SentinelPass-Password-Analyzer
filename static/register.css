@@ -1,0 +1,547 @@
+/* ===============================
+   GLOBAL BACKGROUND
+================================= */
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
+/* ===============================
+   CENTER REGISTER CARD
+================================= */
+
+.register-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+    padding: 20px;
+}
+
+/* ===============================
+   GLASS CARD
+================================= */
+
+.card {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px !important;
+    border: none !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+    padding: 40px 30px !important;
+    width: 380px !important;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* ===============================
+   HEADER
+================================= */
+
+.card h4 {
+    color: #333 !important;
+    font-weight: 700 !important;
+    font-size: 28px !important;
+    margin-bottom: 30px !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ===============================
+   INPUTS
+================================= */
+
+.card input {
+    background: #f8f9fa !important;
+    border: 2px solid #e9ecef !important;
+    color: #333 !important;
+    height: 48px;
+    border-radius: 12px !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.card input::placeholder {
+    color: #adb5bd !important;
+    font-weight: 400;
+}
+
+.card input:focus {
+    background: white !important;
+    border-color: #667eea !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+    outline: none;
+}
+
+/* ===============================
+   BUTTONS
+================================= */
+
+.btn-warning {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border: none !important;
+    color: white !important;
+    font-weight: 600 !important;
+    border-radius: 12px !important;
+    height: 48px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-warning:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%) !important;
+}
+
+/* Google button */
+.btn-danger {
+    background: white !important;
+    border: 2px solid #e9ecef !important;
+    color: #555 !important;
+    font-weight: 600 !important;
+    border-radius: 12px !important;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-danger:hover {
+    background: #f8f9fa !important;
+    border-color: #667eea !important;
+    transform: translateY(-2px);
+}
+
+.btn-danger svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* ===============================
+   DIVIDER
+================================= */
+
+hr {
+    margin: 25px 0 !important;
+    border: none !important;
+    height: 1px !important;
+    background: linear-gradient(to right, transparent, #e9ecef, transparent) !important;
+}
+
+/* ===============================
+   REGISTER LINK
+================================= */
+
+.text-center.mt-3 {
+    margin-top: 20px !important;
+}
+
+.text-center.mt-3 small {
+    color: #6c757d !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    font-family: 'Poppins', sans-serif;
+}
+
+.text-center.mt-3 a {
+    color: #667eea !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+.text-center.mt-3 a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: width 0.3s ease;
+}
+
+.text-center.mt-3 a:hover {
+    color: #764ba2 !important;
+}
+
+.text-center.mt-3 a:hover::after {
+    width: 100%;
+}
+
+/* ===============================
+   OTP MODAL STYLES
+================================= */
+
+/* Modal Animation */
+@keyframes slideInUp {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+.modal-content {
+    animation: slideInUp 0.3s ease-out;
+    overflow: hidden;
+    border-radius: 20px !important;
+    border: none !important;
+}
+
+/* OTP Header */
+.otp-header {
+    position: relative;
+    overflow: hidden;
+}
+
+.otp-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: rotate(0deg) translate(0, 0);
+    }
+    100% {
+        transform: rotate(360deg) translate(50%, 50%);
+    }
+}
+
+/* OTP Input Boxes */
+.otp-box {
+    transition: all 0.2s ease;
+    font-family: 'Courier New', monospace;
+    border-color: #e2e8f0;
+    background: white;
+    font-weight: 600;
+    width: 50px;
+    height: 60px;
+    text-align: center;
+    font-size: 24px;
+    border-radius: 12px;
+    border: 2px solid #e9ecef;
+}
+
+.otp-box:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    transform: scale(1.05);
+    outline: none;
+}
+
+.otp-box:valid {
+    border-color: #10b981;
+    background-color: #f0fdf4;
+}
+
+/* OTP Box Error State */
+.otp-box.error {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+    animation: shake 0.3s ease-in-out;
+}
+
+/* Envelope Animation */
+.envelope-animation {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Timer Section */
+#timerSection {
+    transition: all 0.3s ease;
+    background: #f8f9fa !important;
+    color: #6c757d;
+    padding: 8px 16px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#timerSection.expired {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+/* Resend Button */
+#resendBtn {
+    transition: all 0.2s ease;
+    color: #667eea;
+    position: relative;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+#resendBtn:hover {
+    color: #764ba2;
+    transform: translateY(-1px);
+}
+
+#resendBtn:active {
+    transform: translateY(0);
+}
+
+/* Loading Indicator */
+#otpLoadingIndicator {
+    padding: 10px;
+}
+
+/* Alert Styling */
+.alert {
+    border-radius: 12px !important;
+    border: none !important;
+    font-size: 13px !important;
+    font-family: 'Poppins', sans-serif;
+    padding: 12px !important;
+    margin-bottom: 20px !important;
+}
+
+.alert-danger {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%) !important;
+    color: #991b1b !important;
+}
+
+.alert-success {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%) !important;
+    color: #065f46 !important;
+}
+
+/* ===============================
+   NAVBAR
+================================= */
+
+.navbar {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: blur(10px);
+}
+
+.navbar-brand {
+    font-weight: 700 !important;
+    font-size: 20px !important;
+    letter-spacing: 0.5px;
+}
+
+.navbar .btn-light {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease;
+}
+
+.navbar .btn-light:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+    transform: translateY(-2px);
+}
+
+/* ===============================
+   RESPONSIVE DESIGN
+================================= */
+
+@media (max-width: 576px) {
+    .card {
+        width: 90% !important;
+        margin: 20px !important;
+        padding: 30px 20px !important;
+    }
+    
+    .card h4 {
+        font-size: 24px !important;
+    }
+    
+    .card input {
+        height: 44px;
+        font-size: 13px;
+    }
+    
+    .btn-warning, .btn-danger {
+        height: 44px;
+        font-size: 14px;
+    }
+    
+    .otp-box {
+        width: 45px !important;
+        height: 50px !important;
+        font-size: 20px !important;
+    }
+    
+    .otp-header h4 {
+        font-size: 1.25rem;
+    }
+    
+    .otp-header p {
+        font-size: 0.75rem;
+    }
+    
+    .text-center.mt-3 small,
+    .text-center.mt-3 a {
+        font-size: 12px !important;
+    }
+}
+
+/* ===============================
+   ANIMATIONS
+================================= */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* ===============================
+   DARK MODE SUPPORT
+================================= */
+
+@media (prefers-color-scheme: dark) {
+    .card {
+        background: rgba(30, 30, 40, 0.95) !important;
+    }
+    
+    .card h4 {
+        background: linear-gradient(135deg, #a78bfa 0%, #c084fc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    .card input {
+        background: #1f2937 !important;
+        border-color: #374151 !important;
+        color: #f3f4f6 !important;
+    }
+    
+    .card input:focus {
+        background: #1f2937 !important;
+        border-color: #a78bfa !important;
+    }
+    
+    .text-center.mt-3 small {
+        color: #9ca3af !important;
+    }
+    
+    .btn-danger {
+        background: #1f2937 !important;
+        border-color: #374151 !important;
+        color: #f3f4f6 !important;
+    }
+    
+    .btn-danger:hover {
+        background: #374151 !important;
+    }
+    
+    .otp-box {
+        background-color: #1f2937;
+        border-color: #374151;
+        color: #f3f4f6;
+    }
+    
+    .otp-box:focus {
+        border-color: #a78bfa;
+        background-color: #1f2937;
+    }
+    
+    .otp-box:valid {
+        background-color: #064e3b;
+        border-color: #10b981;
+    }
+    
+    #timerSection {
+        background: #1f2937 !important;
+        color: #9ca3af;
+    }
+}
+
+/* ===============================
+   ADDITIONAL UTILITIES
+================================= */
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #764ba2;
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}

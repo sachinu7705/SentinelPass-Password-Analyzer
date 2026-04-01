@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile - SentinelPass</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+</head>
+<body>
+
+<!-- Background Shapes -->
+<div class="bg-shapes">
+    <div class="shape s1"></div>
+    <div class="shape s2"></div>
+    <div class="shape s3"></div>
+</div>
+
+<!-- Navbar -->
+<div class="navbar">
+    <h2 class="logo">🔐 SentinelPass</h2>
+
+    <div class="account">
+        <div class="account-circle" id="accountBtn">
+            {{ email[0] | upper }}
+        </div>
+
+        <div class="account-menu" id="accountMenu">
+            <p><strong>{{ email }}</strong></p>
+            <hr>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout" class="logout">Logout</a>
+        </div>
+    </div>
+</div>
+
+<!-- Profile Container -->
+<div class="profile-container">
+
+    <div class="profile-card">
+
+        <div class="profile-avatar">
+            {{ email[0] | upper }}
+        </div>
+
+        <h2>My Profile</h2>
+
+        <div class="profile-info">
+            <p><strong>Email:</strong> {{ email }}</p>
+        </div>
+
+        <div class="profile-actions">
+            <a href="/dashboard" class="profile-btn">Back to Dashboard</a>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+document.getElementById("accountBtn").addEventListener("click", function () {
+    const menu = document.getElementById("accountMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+});
+
+window.addEventListener("click", function(e) {
+    if (!e.target.closest(".account")) {
+        document.getElementById("accountMenu").style.display = "none";
+    }
+});
+</script>
+</body>
+</html>
